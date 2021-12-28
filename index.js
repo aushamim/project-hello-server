@@ -25,12 +25,6 @@ async function run() {
     const usersCollection = database.collection("Users");
     const postCollection = database.collection("All-Posts");
 
-    // const database = client.db("Cars-BD");
-    // const carsCollection = database.collection("All-Cars");
-    // const ordersCollection = database.collection("All-orders");
-    // const reviewsCollection = database.collection("All-reviews");
-    // const usersCollection = database.collection("All-users");
-
     // //----------------------//
     // // get area
     // //----------------------//
@@ -57,55 +51,6 @@ async function run() {
       res.send(user);
     });
 
-    // // get a specific user post api
-    // app.get("/users/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: ObjectId(id) };
-    //   const car = await postCollection.findOne(query);
-    //   res.send(car);
-    // });
-
-    // // get feature cars api
-    // app.get("/featureCars", async (req, res) => {
-    //   const cursor = carsCollection.find({});
-    //   const cars = await cursor.limit(6).toArray();
-    //   res.send(cars);
-    // });
-
-    // //get orders api
-    // app.get("/orders", async (req, res) => {
-    //   const cursor = ordersCollection.find({});
-    //   const orders = await cursor.toArray();
-    //   res.send(orders);
-    // });
-
-    // // get a specific order api
-    // app.get("/orders/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: ObjectId(id) };
-    //   const order = await ordersCollection.findOne(query);
-    //   res.json(order);
-    // });
-
-    // // get review api
-    // app.get("/reviews", async (req, res) => {
-    //   const cursor = reviewsCollection.find({});
-    //   const reviews = await cursor.toArray();
-    //   res.send(reviews);
-    // });
-
-    // // get admin api
-    // app.get("/users/:email", async (req, res) => {
-    //   const email = req.params.email;
-    //   const query = { email: email };
-    //   const user = await usersCollection.findOne(query);
-    //   let isAdmin = false;
-    //   if (user?.role === "admin") {
-    //     isAdmin = true;
-    //   }
-    //   res.json({ admin: isAdmin });
-    // });
-
     // //----------------------//
     // // post area
     // //----------------------//
@@ -116,19 +61,6 @@ async function run() {
       const result = await postCollection.insertOne(post);
       res.json(result);
     });
-    // // post review
-    // app.post("/reviews", async (req, res) => {
-    //   const car = req.body;
-    //   const result = await reviewsCollection.insertOne(car);
-    //   res.json(result);
-    // });
-
-    // // post orders api
-    // app.post("/orders", async (req, res) => {
-    //   const orders = req.body;
-    //   const result = await ordersCollection.insertOne(orders);
-    //   res.json(result);
-    // });
 
     //post user data api
     app.post("/users", async (req, res) => {
@@ -155,34 +87,9 @@ async function run() {
       res.json(result);
     });
 
-    // // add admin to db
-    // app.put("/users/admin", async (req, res) => {
-    //   const user = req.body;
-    //   const filter = { email: user.email };
-    //   const updateDoc = { $set: { role: "admin" } };
-    //   const result = await usersCollection.updateOne(filter, updateDoc);
-    //   res.json(result);
-    // });
-
     // //----------------------//
     // // delete area
     // //----------------------//
-
-    // //delete order api
-    // app.delete("/orders/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: ObjectId(id) };
-    //   const result = await ordersCollection.deleteOne(query);
-    //   res.json(result);
-    // });
-
-    // // delete cars api
-    // app.delete("/allCars/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: ObjectId(id) };
-    //   const result = await carsCollection.deleteOne(query);
-    //   res.json(result);
-    // });
   } finally {
     // await client.close();
   }
