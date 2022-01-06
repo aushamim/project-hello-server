@@ -62,6 +62,14 @@ async function run() {
       res.json(result);
     });
 
+    // get a specific post api
+    app.get("/posts/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const post = await postCollection.findOne(query);
+      res.send(post);
+    });
+
     //post user data api
     app.post("/users", async (req, res) => {
       const user = req.body;
@@ -90,6 +98,14 @@ async function run() {
     // //----------------------//
     // // delete area
     // //----------------------//
+
+    //delete order api
+    app.delete("/posts/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await postCollection.deleteOne(query);
+      res.json(result);
+    });
   } finally {
     // await client.close();
   }
